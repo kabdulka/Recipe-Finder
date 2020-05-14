@@ -1,19 +1,35 @@
 {
   "name": "recipefinder",
   "version": "1.0.0",
-  "description": "recipe finder project",
+  "description": "web app that searches for recipes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kabdulka/Recipe-Finder.git"
+    "url": "git+https://github.com/kabdulka/Recipe-Finder.git"
   },
-  "author": "",
+  "author": "Kenan Abdulkarim",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kabdulka/Recipe-Finder/issues"
   },
-  "homepage": "https://github.com/kabdulka/Recipe-Finder#readme"
+  "homepage": "https://github.com/kabdulka/Recipe-Finder#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "html-webpack-plugin": "^3.0.7",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
+    "jquery": "^3.5.1"
+  }
 }
