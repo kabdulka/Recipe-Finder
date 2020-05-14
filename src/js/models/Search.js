@@ -8,6 +8,7 @@ export default class Search {
     
     constructor(query) {
         this.query = query;
+        // this.queryResultRecipes
     }
     
     async getResults() {
@@ -17,7 +18,7 @@ export default class Search {
         //    const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=pizza`);
         try {
             const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=${this.query}`);
-            // result --> queryResult
+            // result --> queryResultRecipes
             this.queryResultRecipes = result.data.recipes;
 //            console.log(this.queryResultRecipes);
         } catch (error) {
