@@ -1,5 +1,7 @@
 // In default exports, don't specify constants or 
 // and variables
+// each model and each view will get its own file for every functionality
+// controllers will go into the same file
 import axios from 'axios';
 
 export default class Search {
@@ -16,8 +18,8 @@ export default class Search {
         try {
             const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=${this.query}`);
             // result --> queryResult
-            this.queryResult = result.data.recipes;
-            console.log(this.queryResult);
+            this.queryResultRecipes = result.data.recipes;
+//            console.log(this.queryResultRecipes);
         } catch (error) {
             alert(error);
         }
