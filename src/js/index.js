@@ -16,24 +16,11 @@
 //3) import everything 
 //import * as searchView from './views/searchView';
 //console.log(`Using imported functions. ${searchView.add(searchView.Id, 2)} and ${searchView.multiply(3, 5)}. ${str} it worked. third method`);
-import axios from 'axios';
+import Search from './models/Search';
 
-async function getResults(query) {
-    const key = '';
-//    https://forkify-api.herokuapp.com/api/search?q=
-    // using axios to make async calls
-    // axios works on all browsers unlike fetch
-//    const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=pizza`);
-    try {
-        const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`);
-        const recipes = result.data.recipes;
-        console.log(recipes);
-    } catch (error) {
-        alert(error);
-    }
-    
-}
-getResults('pizza');
+const search = new Search('pizza');
+console.log(search);
+search.getResults();
 
 
 
