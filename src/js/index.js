@@ -3,7 +3,7 @@
 import Search from './models/Search';
 // import everything from the view in the controllers
 import * as searchView from './views/searchView'
-import {elements} from './views/base';
+import {elements, renderLoader, clearLoader} from './views/base';
 
 // global state of the app
 // search object
@@ -27,6 +27,7 @@ const controlSearch = async () => {
         // 3) Prepare UI for results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchResultClass);
         // 4) Search for recipes (await the promise)
         // Wait for the getResults method to run and finish
         await state.search.getResults();
@@ -34,6 +35,7 @@ const controlSearch = async () => {
         
         // 5) render results on UI - only happen after we recieve results from API
         // console.log(state.search.queryResultRecipes);
+        clearLoader();
         searchView.renderResults(state.search.queryResultRecipes);
     }
 }
