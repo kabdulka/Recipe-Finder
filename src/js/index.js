@@ -30,15 +30,22 @@ const controlSearch = async () => {
         searchView.clearInput();
         searchView.clearResults();
         renderLoader(elements.searchResultClass);
-        // 4) Search for recipes (await the promise)
-        // Wait for the getResults method to run and finish
-        await state.search.getResults();
-        // log to the console the result when it's done
         
-        // 5) render results on UI - only happen after we recieve results from API
-        // console.log(state.search.queryResultRecipes);
-        clearLoader();
-        searchView.renderResults(state.search.queryResultRecipes);
+        try {
+            
+            // 4) Search for recipes (await the promise)
+            // Wait for the getResults method to run and finish
+            await state.search.getResults();
+            // log to the console the result when it's done
+
+            // 5) render results on UI - only happen after we recieve results from API
+            // console.log(state.search.queryResultRecipes);
+            clearLoader();
+            searchView.renderResults(state.search.queryResultRecipes);
+        } catch(error) {
+            alert("Error processing Search");
+            clearLoader();
+        }
     }
 }
 
@@ -62,10 +69,39 @@ elements.SearchResultsPages.addEventListener('click', event => {
 });
  
 // Recipe Controller
-const rec = new Recipe(47746);
-rec.getRecipe();
-console.log(rec);
+//const rec = new Recipe(47746);
+//rec.getRecipe();
+//console.log(rec);
 
+const controlRecipe = async () => {
+    // get id from url
+    // window.location is the entire url, replace hash with nothing
+    const id = window.location.hash.replace('#', '');
+    console.log(id);
+    
+    if (id) {
+        // prepare UI for changes
+        
+        // Create new recipe object
+        state.recipe = new Recipe(id);
+        try {
+            // Get recipe data from server (needs to happen async and await the function to load the 
+            // recipe
+            // in the background)
+            await state.recipe.getRecipe(); // will return a promise because it's async
+            // Calculate servings and time
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+            // Render recipe
+            console.log(state.recipe);
+        } catch (error) {
+            alert("Error processing Recipe");
+        }
+    }
+}
+//window.addEventListener('hashchange', controlRecipe);
+//window.addEventListener('load', controlRecipe);
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
 
 
@@ -115,6 +151,53 @@ console.log(rec);
 //3) import everything 
 //import * as searchView from './views/searchView';
 //console.log(`Using imported functions. ${searchView.add(searchView.Id, 2)} and ${searchView.multiply(3, 5)}. ${str} it worked. third method`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
