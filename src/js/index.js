@@ -1,6 +1,7 @@
 // need webpack to bundle everything together
 
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 // import everything from the view in the controllers
 import * as searchView from './views/searchView'
 import {elements, renderLoader, clearLoader} from './views/base';
@@ -16,6 +17,7 @@ const state = {}
 // persistent data which will be saved when the page is loaded
 // event object
 
+// Search Controller
 const controlSearch = async () => {
     // get query form view
     const query = searchView.getInput(); //TODO
@@ -58,11 +60,11 @@ elements.SearchResultsPages.addEventListener('click', event => {
     }
     
 });
-    
-
-//const search = new Search('pizza');
-//console.log(search);
-//search.getResults();
+ 
+// Recipe Controller
+const rec = new Recipe(47746);
+rec.getRecipe();
+console.log(rec);
 
 
 
