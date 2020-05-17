@@ -44,6 +44,20 @@ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
+
+elements.SearchResultsPages.addEventListener('click', event => {
+    // use the closet method
+    const button = event.target.closest(".btn-inline");
+    // console.log(button);
+    // if a button exists
+    if (button) {
+        const goToPage = parseInt(button.dataset.goto, 10); // base 10 (0-9)
+        searchView.clearResults();
+        searchView.renderResults(state.search.queryResultRecipes, goToPage);
+        console.log(goToPage);
+    }
+    
+});
     
 
 //const search = new Search('pizza');
