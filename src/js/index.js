@@ -20,7 +20,8 @@ const state = {}
 // Search Controller
 const controlSearch = async () => {
     // get query form view
-    const query = searchView.getInput(); //TODO
+    const query = searchView.getInput();
+//    const query = 'pizza'; 
     console.log(query);
     if (query) {
         // 2) new search object and add to state
@@ -54,6 +55,12 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 });
 
+// for testing
+//window.addEventListener('load', e => {
+//    e.preventDefault();
+//    controlSearch();
+//});
+
 elements.SearchResultsPages.addEventListener('click', event => {
     // use the closet method
     const button = event.target.closest(".btn-inline");
@@ -84,12 +91,14 @@ const controlRecipe = async () => {
         
         // Create new recipe object
         state.recipe = new Recipe(id);
+//        window.r = state.recipe; //---------- FOR TESTING
         try {
             // Get recipe data from server (needs to happen async and await the function to load the 
             // recipe
-            // in the background)
+            // in the background) and parse ingredient
             await state.recipe.getRecipe(); // will return a promise because it's async
             // Calculate servings and time
+            state.recipe.parseIngredients();
             state.recipe.calcTime();
             state.recipe.calcServings();
             // Render recipe
