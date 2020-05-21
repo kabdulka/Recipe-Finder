@@ -13,6 +13,8 @@ export default class Recipe {
             const result = await axios(`https://forkify-api.herokuapp.com/api/get?rId=${this.id}`);
             this.title = result.data.recipe.title;
             this.author = result.data.recipe.publisher;
+            // changes were made here
+//            console.log(result.data.recipe.image_ur l); // ------------
             this.image = result.data.recipe.image_url;
             this.url = result.data.recipe.source_url;
             this.ingredients = result.data.recipe.ingredients;
@@ -36,6 +38,7 @@ export default class Recipe {
     parseIngredients() {
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon',            'cups', 'pounds'];
         const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+        const units = [...unitsShort, 'kg', 'g'];
         const newIngredients = this.ingredients.map(element => {
             // 1) Uniform units
             // use let to mutate the variable
@@ -50,7 +53,7 @@ export default class Recipe {
             // find index at which unit is located
             // MDN: includes returns true if the element is in the array, false otherwise
             // for each current element, will test if that element is inside units array
-            const unitIndex = ingredientArray.findIndex(element2 => unitsShort.includes(element2));
+            const unitIndex = ingredientArray.findIndex(element2 => units.includes(element2));
             // unitIndex is the position where a unit is found. Ex, tbsp
             let objIngredient;
             
