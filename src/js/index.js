@@ -1,4 +1,5 @@
 // need webpack to bundle everything together
+import List from './models/List';
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 // import everything from the view in the controllers
@@ -141,10 +142,10 @@ elements.recipe.addEventListener('click', event => {
         state.recipe.updateServings('inc');
         recipeView.updateServingsIngredients(state.recipe);
     }
-    console.log(state.recipe);
+//    console.log(state.recipe);
 });
 
-
+window.lst = new List();
 
 
 
