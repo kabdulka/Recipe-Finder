@@ -64,7 +64,7 @@ window.addEventListener('load', e => {
 });
 
 elements.SearchResultsPages.addEventListener('click', event => {
-    // use the closet method
+    // use the closet method which includes the closet ancestor to the element being clicked on
     const button = event.target.closest(".btn-inline");
     // console.log(button);
     // if a button exists
@@ -122,9 +122,27 @@ window.addEventListener('hashchange', controlRecipe);
 window.addEventListener('load', controlRecipe);
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
-
-
-
+// use event delegation because buttons aren't there by the time they're clicked
+// handling recipe button clicks
+elements.recipe.addEventListener('click', event => {
+    // do something if the target matches btn-decrease
+    // second selector is any decendents of the element (any child)
+    if (event.target.matches('.btn-decrease, .btn-decrease *')) {
+        if (state.recipe.servings > 1) {
+            // decrease button is clicked
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+    
+    // do something if the target matches btn-increase
+    // second selector is any decendents of the element (any child)
+    } else if (event.target.matches('.btn-increase, .btn-increase *')) {
+        // increase button is clicked
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
+    }
+    console.log(state.recipe);
+});
 
 
 

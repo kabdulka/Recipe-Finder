@@ -99,6 +99,22 @@ export default class Recipe {
         this.ingredients = newIngredients;
     }
     
+    // type = increase or decrease button to dec or inc servings
+    updateServings (type) {
+        
+        // servings
+        const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+        // Ingredients
+        // update all count numbers (they're valid for only current amount of servings)
+        this.ingredients.forEach(ing => {
+            // ing current value in for each loop
+            ing.count *= (newServings / this.servings);
+        });
+        
+        
+        this.servings = newServings;
+    }
+    
 }// end class
 
 
