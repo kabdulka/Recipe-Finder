@@ -1,5 +1,6 @@
 // need webpack to bundle everything together
 import List from './models/List';
+import Likes from './models/Likes';
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 // import everything from the view in the controllers
@@ -134,6 +135,39 @@ const controlList = () => {
     });
 }
 
+const controlLike = () => {
+    if (!state.likes) {
+        state.likes = new Likes();
+    }
+    const currentId = state.recipe.id;
+    
+    //user has not yet liked current recipe
+    if (!state.likes.isLiked()) {
+        // add like to state
+        const newLike = state.likes.addLike(
+            currentId,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
+        
+        // toggle like button
+        
+        // add like to UI list
+        console.log(state.likes);
+    //user has not yet liked current recipe
+    } else {
+        // remove like from state
+        state.likes.deleteLike(currentId);
+        // toggle like button
+        
+        // remove like from UI list
+        console.log(state.likes);
+    }
+}
+
+
+
 // Handle delete and update list item events
 elements.shopping.addEventListener('click', event => {
     
@@ -177,7 +211,11 @@ elements.recipe.addEventListener('click', event => {
         state.recipe.updateServings('inc');
         recipeView.updateServingsIngredients(state.recipe);
     } else if (event.target.matches(".recipe__btn--add, .recipe__btn--add *")) {
+        // Add ingredients to shopping list
         controlList();
+    } else if (event.target.matches(".recipe__love, .recipe__love *")) {
+        // Like controller
+        controlLike();
     }
 //    console.log(state.recipe);
 });
