@@ -8,6 +8,7 @@ export default class Likes {
             id, title, author, img
         };
         this.likes.push(like);
+//        console.log("like is: " + like);
         return like;
     }
     
@@ -17,6 +18,8 @@ export default class Likes {
     }
     
     isLiked(id) {
+        console.log("inside Base id is: " + id);
+        console.log("testing for if is liked: " + this.likes.findIndex(el => el.id === id) !== -1);
         return this.likes.findIndex(el => el.id === id) !== -1;
     }
     

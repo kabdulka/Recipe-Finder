@@ -4,10 +4,12 @@ export const elements = {
     searchForm: document.querySelector('.search'),
     searchInput: document.querySelector('.search__field'),
     searchResultList: document.querySelector('.results__list'),
-    searchResultClass: document.querySelector(".results__list"),
-    SearchResultsPages: document.querySelector(".results__pages"),
+    searchResultClass: document.querySelector('.results__list'),
+    SearchResultsPages: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
-    shopping: document.querySelector(".shopping__list")
+    shopping: document.querySelector('.shopping__list'),
+    likesMenu: document.querySelector('.likes__field'),
+    likesList: document.querySelector('.likes__list')
 };
 
 export const elementStrings = {
